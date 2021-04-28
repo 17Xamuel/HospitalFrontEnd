@@ -5,10 +5,173 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teaching Hospital</title>
+    <!--Styles-->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+      integrity="sha256-m5Awq0wGGRCO7AtN92mhhdGt+TJC70hTou7/t5M11WY="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        font-family: "Ubuntu", sans-serif;
+      }
+      .main {
+        width: 100vw;
+      }
+      .main-ctr {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+        margin: 0px auto;
+        position: relative;
+      }
+      .img-ctr {
+        position: relative;
+      }
+      /* .login-ctr {
+        /* position: absolute;
+        right: 75%;
+        z-index: 2; 
+      } */
+      .input-ctr {
+        position: relative;
+        border-bottom: 1px solid #93a3b3;
+        transition: all 0.3s ease-in-out;
+        margin: 10px 0px 35px 0px;
+        width: 300px;
+      }
+      .login-hdr {
+        text-align: center;
+      }
+      .input-ctr > input {
+        padding: 10px 5px;
+        font-size: 20px;
+        /* width: 300px; */
+        border: none;
+        outline: none;
+      }
+      .label {
+        position: absolute;
+        top: 10px;
+        font-size: 20px;
+        pointer-events: none;
+        transition: all 0.3s ease-in-out;
+      }
+      .e-wr {
+        display: none;
+        position: absolute;
+        font-size: 14px;
+        color: red;
+        padding: 5px 0px;
+        transition: all 0.3s ease-in-out;
+      }
+      .btn-submit {
+        width: 200px;
+        margin-bottom: 10px;
+        padding: 10px 5px;
+        font-size: 18px;
+        border: 0px;
+        outline: none;
+        background-color: #4671ff;
+        color: white;
+        border-radius: 30px;
+        box-shadow: 5px 5px 7px #e2e2e2;
+        cursor: pointer;
+        /* transition: all 0.3s ease-in-out; */
+        transform: translateY(-1px);
+      }
+      .btn-submit:hover {
+        opacity: 0.7;
+      }
+    </style>
+    <!--Styles-->
   </head>
   <body>
-    <header class="hdr"></header>
-    <main class="main"></main>
+    <header class="hdr">
+      <nav class="hdr-nav">
+        <div class="logo">
+          <!-- <img src="./assets/medicine.png" alt="" width="50px" height="50px" /> -->
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="main-ctr">
+        <form class="login-ctr" autocomplete="off">
+          <div class="login-hdr">
+            <i class="fas fa-user-circle fa-10x" style="color: #4671ff"></i>
+            <h1>Welcome</h1>
+          </div>
+          <div class="ctr-username input-ctr">
+            <i class="fas fa-user"></i>
+            <span class="label" id="lb-username">Username</span>
+            <input type="text" id="lg-username" />
+            <div class="e-wr">Check Username or Password</div>
+          </div>
+          <div class="ctr-password input-ctr">
+            <i class="fas fa-lock"></i>
+            <span class="label" id="lb-password">Password</span>
+            <input type="text" id="lg-password" />
+            <div class="e-wr">Check Username or Password</div>
+          </div>
+          <div class="btn-ctr">
+            <button type="submit" class="btn-submit">Login</button>
+          </div>
+        </form>
+        <div class="img-ctr">
+          <img
+            src="./assets/medicine.png"
+            alt=""
+            style="width: 70vw; height: 70vh; object-fit: contain"
+          />
+        </div>
+      </div>
+    </main>
     <footer class="ftr"></footer>
+    <script>
+      //input focus
+      function focus(input, elMove, elMoveGroup, icon) {
+        document.querySelector(input).addEventListener("focus", () => {
+          document.querySelector(elMove).style.fontSize = "13px";
+          document.querySelector(elMove).style.color = "#4671FF";
+          document.querySelector(elMove).style.transform = "translateY(-15px)";
+          document.querySelector(elMoveGroup).style.borderBottom =
+            "1px solid #4671FF";
+          document.querySelector(icon).style.color = "#4671FF";
+        });
+        document.querySelector(input).addEventListener("blur", () => {
+          if (document.querySelector(input).value === "") {
+            document.querySelector(elMove).style.transform = "translateY(0px)";
+            document.querySelector(elMove).style.color = "black";
+            document.querySelector(elMove).style.fontSize = "20px";
+          }
+          document.querySelector(elMoveGroup).style.borderBottom =
+            "1px solid #93a3b3";
+          document.querySelector(icon).style.color = "black";
+        });
+      }
+      focus(
+        "#lg-username",
+        "#lb-username",
+        ".ctr-username",
+        ".input-ctr .fa-user"
+      );
+      focus(
+        "#lg-password",
+        "#lb-password",
+        ".ctr-password",
+        ".input-ctr .fa-lock"
+      );
+      //input focus end
+    </script>
   </body>
 </html>
