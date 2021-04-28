@@ -14,12 +14,13 @@
   font-family: "Ubuntu", sans-serif;
 }
 .sidebar {
-  width: 345px;
+  width: 250px;
   position: fixed;
   left: 0;
   top: 0;
   height: 100%;
   background: var(--main-color);
+  transition: width 300ms;
 }
 .sidebar-brand {
   height: 90px;
@@ -27,8 +28,9 @@
   color: #fff;
 }
 .sidebar-brand span {
-  display: inline-block;
-  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding-right: 0rem;
 }
 .sidebar-menu {
   margin-top: 1rem;
@@ -53,6 +55,7 @@
 .sidebar-menu a span:first-child {
   font-size: 1.5rem;
   padding-right: 1rem;
+  padding-left: 1rem;
 }
 #nav-toggle:checked + .sidebar {
   width: 70px;
@@ -63,16 +66,26 @@
 #nav-toggle:checked + li a span {
   padding-right: 1rem;
 }
-/* #nav-toggle:checked + .sidebar .sidebar-brand,
-#nav-toggle:checked + .sidebar .sidebar-menu {
-  padding-left: 1rem;
-} */
 #nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
 #nav-toggle:checked + .sidebar li a span:last-child {
   display: none;
 }
+#nav-toggle:checked + .sidebar .sidebar-brand {
+  padding-left: 1rem;
+}
+#nav-toggle:checked + .sidebar li {
+  padding-left: 0.5rem;
+}
+#nav-toggle:checked ~ .main-content {
+  margin-left: 70px;
+}
+#nav-toggle:checked ~ .main-content header {
+  width: calc(100% - 70px);
+  left: 70px;
+}
 .main-content {
-  margin-left: 345px;
+  margin-left: 250px;
+  transition: margin-left 300ms;
 }
 header {
   background: #fff;
@@ -81,10 +94,11 @@ header {
   padding: 1rem;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   position: fixed;
-  left: 345px;
-  width: calc(100% - 345px);
+  left: 250px;
+  width: calc(100% - 250px);
   top: 0;
   z-index: 100;
+  transition: all 300ms;
 }
 #nav-toggle {
   display: none;
@@ -95,6 +109,7 @@ header h2 {
 header label span {
   font-size: 1.7rem;
   padding-right: 1rem;
+  cursor: pointer;
 }
 .search-wrapper {
   border: 1px solid #ccc;
@@ -228,4 +243,96 @@ td .status {
 }
 .status.orange {
   background: orangered;
+}
+
+@media only screen and (max-width: 1200px) {
+  .sidebar {
+    width: 70px;
+  }
+  li a {
+    padding-left: 0rem;
+  }
+  li a span {
+    padding-right: 1rem;
+  }
+  .sidebar .sidebar-brand h2 span:last-child,
+  .sidebar li a span:last-child {
+    display: none;
+  }
+  .main-content {
+    margin-left: 70px;
+  }
+  .main-content header {
+    width: calc(100% - 70px);
+    left: 70px;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    left: -100% !important;
+  }
+  header h2 {
+    display: flex;
+    align-items: center;
+  }
+  header h2 label {
+    background: var(--main-color);
+    color: #fff;
+    padding: 0rem;
+    margin-right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  header h2 span {
+    padding-right: 0rem;
+  }
+  header {
+    width: 100% !important;
+    left: 0 !important;
+  }
+  #nav-toggle:checked + .sidebar {
+    left: 0 !important;
+    width: 250px;
+    z-index: 100;
+  }
+  #nav-toggle:checked + .sidebar .sidebar-brand,
+  #nav-toggle:checked + .sidebar li {
+    padding-left: 2rem;
+  }
+  #nav-toggle:checked + li a {
+    padding-left: 1rem;
+  }
+
+  #nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
+  #nav-toggle:checked + .sidebar li a span:last-child {
+    display: inline;
+  }
+  #nav-toggle:checked ~ .main-content {
+    margin-left: 0rem !important;
+  }
+  .main-content {
+    width: 100%;
+    margin-left: 0rem;
+  }
+
+  .cards {
+    grid-template-columns: 100%;
+  }
+  .recent-grid {
+    grid-template-columns: 100%;
+  }
+  .search-wrapper {
+    display: none;
+  }
 }
